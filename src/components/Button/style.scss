@@ -28,3 +28,15 @@
         cursor: not-allowed;
     }
 }
+
+.outlined {
+    background: #FFF !important;
+    color: #835afd;
+    border: 1px solid #835afd;
+}
+
+.outlined:hover {
+    background: #835afd !important;
+    color: #FFF;
+    filter: none !important;
+} 
