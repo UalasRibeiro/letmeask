@@ -1,4 +1,6 @@
-import copyImg from '../../assets/images/copy.svg';
+import toast from 'react-hot-toast';
+
+import { FaRegClone } from 'react-icons/fa';
 
 import './style.scss';
 
@@ -10,12 +12,14 @@ export function RoomCode(props: RoomCodeProps) {
 
     function copyRoomCodeToClipboard() {
         navigator.clipboard.writeText(props.code);
+        
+        toast.success("copiado!");
     }
 
     return(
         <button className="room-code" onClick={copyRoomCodeToClipboard}>
             <div>
-                <img src={copyImg} alt="Copy room code" />
+                <FaRegClone />
             </div>
             <span>Sala {props.code}</span>
         </button>

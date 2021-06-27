@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useHistory } from "react-router-dom";
 import { database } from "../services/firebase";
 import { useAuth } from "./useAuth";
 
@@ -29,10 +30,12 @@ type FirebaseQuestions = Record<string, {
     }>
 }>
 
-export function useRoom(roomId: string) {
+export function useRoom(roomId: string, someAuthorId: boolean = false) {
     const [questions, setQuestions] = useState<Questions[]>([]);
+    const [authorId, setAuthorId] = useState();
     const [title, setTitle] = useState('');
     const { user } = useAuth();
+    const history = useHistory();
     
     useEffect(() => {
         const roomRef = database.ref(`rooms/${roomId}`);
@@ -64,15 +67,26 @@ export function useRoom(roomId: string) {
                 }
             });
 
+            setAuthorId(databaseRoom.authorId);
             setTitle(databaseRoom.title);
             setQuestions(parsedQuestions);
+                
+            if(someAuthorId) {
+                if(authorId) {
+                    if(authorId !== user?.id) {
+                        toast.error('Você precisa ser o criador da sala para acessar esta página!');
+
+                        history.push('/');
+                    }
+                }
+            }
 
             return () => {
                 roomRef.off();
             }
         })
 
-    }, [roomId, user]);
+    }, [roomId, user, authorId, someAuthorId, history]);
     
     return {title, questions}
 }

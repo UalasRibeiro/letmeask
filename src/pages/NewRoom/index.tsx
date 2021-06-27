@@ -2,6 +2,8 @@ import { FormEvent, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
 
+import { FaPlus } from 'react-icons/fa';
+
 import { useAuth } from '../../hooks/useAuth';
 import { Button } from '../../components/Button';
 
@@ -23,14 +25,15 @@ export function NewRoom() {
 
         const roomRef = database.ref('rooms');
 
-        const firebaseRoom = await roomRef.push({
+        await roomRef.push({
             title: newRoom,
             authorId: user?.id,
-        });
-
-        toast.success(`A sala ${newRoom} foi criada com sucesso!`);
-
-        history.push(`/rooms/${firebaseRoom.key}`);
+        }).then((data) =>{
+            toast.success(`A sala ${newRoom} foi criada com sucesso!`);
+            history.push(`/admin/rooms/${data.key}`);
+        }).catch((error) => {
+            toast.error(error);
+        })
     }
 
     return(
@@ -52,7 +55,10 @@ export function NewRoom() {
                             value={newRoom}
                         />
                         <Button type="submit" disabled={!user}>
-                            Criar sala
+                            <div>
+                                <FaPlus />
+                                Criar sala
+                            </div>
                         </Button>
                     </form>
                     <p>

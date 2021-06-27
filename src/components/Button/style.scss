@@ -2,7 +2,7 @@
     height: 50px;
     border-radius: 8px;
     font-weight: 500;
-    background: #835afd;
+    background: var(--color-primary);
     color: #fff;
     padding: 0 32px;
 
@@ -27,16 +27,33 @@
         opacity: 0.6;
         cursor: not-allowed;
     }
+
+    > div {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+
+    > div svg {
+        height: 24px !important;
+        width: 24px !important;
+    }
 }
 
 .outlined {
     background: #FFF !important;
-    color: #835afd;
-    border: 1px solid #835afd;
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
 }
 
 .outlined:hover {
-    background: #835afd !important;
+    background: var(--color-primary) !important;
     color: #FFF;
     filter: none !important;
 } 
+
+@media (max-width:480px) { 
+    .button {
+        height: 30px !important;
+    }
+}

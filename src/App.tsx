@@ -8,10 +8,14 @@ import { NewRoom } from "./pages/NewRoom";
 import { Room } from "./pages/Room";
 import { AdminRoom } from './pages/AdminRoom';
 
-function App() {  
+import './styles/variables.scss';
+import './styles/global.scss';
+
+function App() {
+
   return (
     <>
-      <div><Toaster/></div>
+      <Toaster />
       <BrowserRouter>
         <AuthContextProvider>
           <Switch>

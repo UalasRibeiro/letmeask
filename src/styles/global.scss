@@ -5,10 +5,16 @@
 }
 
 body {
-    background: #f8f8f8;
-    color: #29292e;
+    background: var(--background);
+    color: var(--color);
 }
 
 body, input, button, textarea {
     font: 400 16px 'Roboto', sans-serif;
+}
+
+
+.danger {
+    background: var(--color-danger) !important;
+    color: #FFF !important;
 }

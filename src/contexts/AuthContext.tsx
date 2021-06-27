@@ -23,6 +23,7 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
     const [user, setUser] = useState<User>();
     useEffect(() =>{
       const unsubscribe = auth.onAuthStateChanged(user => {
+        
         if(user) {
           const { displayName, photoURL, uid } = user;
     
@@ -30,12 +31,13 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
           {
             throw new Error('Missing information from Google Account');
           }
-    
-          setUser({
-            id: uid,
-            name: displayName,
-            avatar: photoURL
-          })
+          else {
+            setUser({
+              id: uid,
+              name: displayName,
+              avatar: photoURL
+            })
+          }
         }
       })
   

@@ -2,11 +2,12 @@
     display: flex;
     align-items: stretch;
     height: 100vh;
+    flex-direction: row;
 
     aside {
         flex: 7;
 
-        background: #835afd;
+        background: var(--color-primary) !important;
         color: #fff;
 
         display: flex;
@@ -28,8 +29,9 @@
             font-size: 24px;
             line-height: 32px;
             margin-top: 16px;
-            color: #f8f8f8;
+            color: var(--color-primary-text);
         }
+
     }
 
     main {
@@ -49,7 +51,7 @@
         max-width: 320px;
         align-items: stretch;
         text-align: center;
-
+        
         > img {
             align-self: center;
         }
@@ -70,6 +72,10 @@
                 border: 1px solid #a8a8b3;
             }
 
+            input:focus {
+                border: 1px solid var(--color-primary) !important;
+            }
+
             button {
                 margin-top: 16px;
             }
@@ -81,11 +87,11 @@
 
         p {
             font-size: 14px;
-            color: #737380;
+            color: var(--color-primary-text);
             margin-top: 16px;
 
             a {
-                color: #e559f9;
+                color: var(--color-secondary);
             }
         }
     }
@@ -95,7 +101,7 @@
         height: 50px;
         border-radius: 8px;
         font-weight: 500;
-        background: #ea4335;
+        background: var(--color-google);
         color: #fff;
 
         display: flex;
@@ -107,7 +113,7 @@
 
         transition: filter  0.2s;
 
-        img {
+        svg {
             margin-right: 8px;
         }
 
@@ -115,30 +121,39 @@
             filter: brightness(0.9);
         }
     }
+}
 
-    .separator {
-        font-size: 14px;
-        color: #a8a8b3;
+#page-auth { 
+    @media (max-width:480px)
+    { 
+        flex-direction: column;
+        height: 100vh !important;
 
-        margin: 32px 0;
-        display: flex;
-        align-items: center;
+        aside {
+            flex: 3 !important;
+            padding: 50px 40px !important;
+            
+            img {
+                display: none;
+            }
 
-        &::before {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #a8a8b3;
-            margin-right: 16px;
+            strong {
+                font-size: 20px !important;
+            }
+
+            p {
+                font-size: 12px !important;
+            }
         }
+        
+        .main-content {
+            flex-direction: column;
 
-        &::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: #a8a8b3;
-            margin-left: 16px;
+            >form {
+                button {
+                    height: 45px !important;
+                }
+            }
         }
     }
 }
-

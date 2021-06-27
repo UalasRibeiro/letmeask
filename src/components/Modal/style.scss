@@ -1,0 +1,121 @@
+
+.modal {    
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    border-radius: 8px;
+    transform: translate(-50%, -50%);
+    outline: 1px solid transparent;
+    min-height: 130px;
+    max-width: 30vw;
+    background: #FFF;
+    padding: 20px 15px 20px 15px;
+    border: 1px solid var(--color-primary-text);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    overflow-y: auto;
+    z-index: 1;
+
+    > h1 {
+        color: #000;
+    }
+
+    > p {
+        color: var(--color-primary-text);
+    }
+
+    > .modal-container {
+        display: flex;
+        align-items: stretch;
+        flex-direction: column;
+
+        > .modal-header {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 15px 0;
+
+            > svg {
+                height: 50px;
+                width: 50px;
+                margin-bottom: 15px;
+
+                color: var(--color-danger);
+            }
+        }
+
+        > .modal-content {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+
+            > h2 {
+                font: 'Poppins', sans-serif;
+                font-weight: bold;
+                font-size: 24px;
+            }
+
+            > p {
+                font-size: 16px;
+            }
+        }
+
+        > .modal-footer {
+            display: flex;
+            align-items: stretch;
+            flex-direction: row;
+            margin: 30px 15px 0px 15px;
+            gap: 16px;
+
+            > button {
+                flex: 1;
+                
+                height: 50px;
+                border-radius: 8px;
+                font-weight: 500;
+                color: var(--color-primary-text);
+                padding: 0 32px;
+                background: #DBDCDD;
+                
+                cursor: pointer;
+                border: 0;
+
+                transition: filter  0.2s;
+
+                &:not(:disabled):hover {
+                    filter: brightness(0.9);
+                }
+            
+                &:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                }
+            }
+        }
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.8;
+  }
+
+  
+@media (max-width:480px) { 
+        
+    .modal {    
+        left: 0;
+        transform: translate(0%, -50%);
+        max-width: none;
+        margin: 15px;
+    }
+
+    .modal-overlay {
+        width: 100vw;
+        height: 100vh;
+    }
+}

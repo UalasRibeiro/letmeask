@@ -42,12 +42,12 @@
             h1 {
                 font-family: 'Poppins', sans-serif;
                 font-size: 24px;
-                color: #29292e;
+                color: var(--color-secondary-text);
             }
 
             span {
                 margin-left: 16px;
-                background: #e559f9;
+                background: var(--color-secondary);
                 border-radius: 9999px;
 
                 padding: 8px 16px;
@@ -87,7 +87,7 @@
 
                     > span {
                         margin-left: 8px;
-                        color: #29292e;
+                        color: var(--color-secondary-text);
                         font-size: 14px;
                         font-weight: 500;
                     }
@@ -95,13 +95,13 @@
 
                 span {
                     font-size: 14px;
-                    color: #737380;
+                    color: var(--color-primary-text);
                     font-weight: 500;
 
                     button {
                         background: transparent;
                         border: 0;
-                        color: #835afd;
+                        color: var(--color-primary);
 
                         text-decoration: underline;
                         font-size: 14;
@@ -109,6 +109,32 @@
 
                         cursor: pointer;
                     }
+                }
+            }
+        }
+
+        .empty-questions {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding-top: 30px;
+            
+            > img {
+                height: 300px;
+                margin-bottom: 30px;
+            }
+        }
+    }
+}
+
+@media (max-width:480px) { 
+    #page-room {
+        header {
+            .content
+            {
+                > div {
+                    display: flex;
+                    flex-direction: column;
                 }
             }
         }

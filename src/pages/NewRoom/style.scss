@@ -2,11 +2,11 @@
     display: flex;
     align-items: stretch;
     height: 100vh;
-
+    
     aside {
         flex: 7;
 
-        background: #835afd;
+        background: var(--color-primary);
         color: #fff;
 
         display: flex;
@@ -67,7 +67,7 @@
                 border-radius: 8px;
                 padding: 0 16px;
                 background: #fff;
-                border: 1px solid #a8a8b3;
+                border: 1px solid var(--color-secondary-text);
             }
 
             button {
@@ -81,44 +81,18 @@
 
         p {
             font-size: 14px;
-            color: #737380;
+            color: var(--color-primary-text);
             margin-top: 16px;
 
             a {
-                color: #e559f9;
+                color: var(--color-secondary);
             }
-        }
-    }
-
-    .create-room {
-        margin-top: 64px;
-        height: 50px;
-        border-radius: 8px;
-        font-weight: 500;
-        background: #ea4335;
-        color: #fff;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        cursor: pointer;
-        border: 0;
-
-        transition: filter  0.2s;
-
-        img {
-            margin-right: 8px;
-        }
-
-        &:hover {
-            filter: brightness(0.9);
         }
     }
 
     .separator {
         font-size: 14px;
-        color: #a8a8b3;
+        color: var(--color-secondary-text);
 
         margin: 32px 0;
         display: flex;
@@ -128,7 +102,7 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: #a8a8b3;
+            background: var(--color-secondary-text);
             margin-right: 16px;
         }
 
@@ -136,9 +110,39 @@
             content: '';
             flex: 1;
             height: 1px;
-            background: #a8a8b3;
+            background: var(--color-secondary-text);
             margin-left: 16px;
         }
     }
 }
 
+
+@media (max-width:480px) { 
+    #page-auth {
+        flex-direction: column;
+        height: 100vh !important;
+        
+        aside { 
+            flex: 3 !important;
+            padding: 50px 40px !important;
+            
+            img {
+                display: none;
+            }
+
+            strong {
+                font-size: 20px !important;
+            }
+
+            p {
+                font-size: 12px !important;
+            }
+            
+            >form {
+                button {
+                    height: 45px !important;
+                }
+            }
+        }
+    }
+}
