@@ -48,9 +48,41 @@
             }
         }
 
-        div {
+        > a {
+            text-decoration: underline;
+            cursor: pointer;
+            color: var(--color-primary);
+
+            &:hover {
+                filter: brightness(0.8);
+            }
+        }
+        
+        > div {
             display: flex;
             gap: 16px;
+            align-items: center;
+        }
+
+        > div div {
+            display: flex;
+            align-items: flex-end;
+            gap: 5px;
+        }
+
+        span {
+            color: var(--color-primary-text);
+            font-size: 14px;
+        }
+
+        svg {
+            width: 24px;
+            height: 24px;
+            color: var(--color-primary-text);
+
+            path {
+                stroke: var(--color-primary-text);
+            }
         }
 
         button {
@@ -79,5 +111,18 @@
                  filter: brightness(0.8);
              }
         }
+    }
+    
+    .question-show-reponse {
+        display: inline-block;
+        align-items: center;
+        transition-duration: 4s;
+        transition-delay: 2s;
+        transition: all 5s ease-in-out;
+    }
+    
+    .toggle {
+        display: none !important;
+        transition: all 5s ease-in-out;
     }
 }

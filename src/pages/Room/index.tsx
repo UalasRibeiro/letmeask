@@ -2,14 +2,15 @@ import { FormEvent, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useParams } from 'react-router-dom';
 
-import logoImg from '../../assets/images/logo.svg';
 import EmptyQuestionImg from '../../assets/images/empty-questions.svg';
 
-import { FaThumbsUp } from 'react-icons/fa';
+import { MdThumbUp } from 'react-icons/md';
 
+import { Header } from '../../components/Header';
 import { Button } from '../../components/Button';
 import { Question } from '../../components/Question';
 import { RoomCode } from '../../components/RoomCode';
+
 import { useAuth } from '../../hooks/useAuth';
 import { useRoom } from '../../hooks/useRoom';
 import { database } from '../../services/firebase';
@@ -83,12 +84,9 @@ export function Room() {
 
     return (
         <div id='page-room'>
-            <header>
-                <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
-                    <RoomCode code={roomId} />
-                </div>
-            </header>
+            <Header>
+                <RoomCode code={roomId} />
+            </Header>
             <main className="content">
                 <div className="room-title">
                     <h1>Sala {title}</h1>
@@ -120,7 +118,7 @@ export function Room() {
                     <div className="question-list">
                         {questions.map(question => {
                             return (
-                                <Question key={question.id} content={question.content} author={question.author} isAnswered={question.isAnswered} isHighlighted={question.isHighlighted}>
+                                <Question key={question.id} roomId={roomId} questionId={question.id} content={question.content} response={question.response} author={question.author} isAnswered={question.isAnswered} isHighlighted={question.isHighlighted}>
                                     {!question.isAnswered && 
                                         (
                                             <button 
@@ -130,7 +128,7 @@ export function Room() {
                                                 onClick={() => {handleLiked(question.id, question.likeId)}}
                                                 >
                                                     { question.likeCount > 0 && <span>{question.likeCount}</span> }
-                                                    <FaThumbsUp />
+                                                    <MdThumbUp />
                                             </button>
                                         )
                                     }

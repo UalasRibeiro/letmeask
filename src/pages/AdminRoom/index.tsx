@@ -1,23 +1,21 @@
 import { useHistory, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-import logoImg from '../../assets/images/logo.svg';
-import deleteImg from '../../assets/images/delete.svg';
-import checkImg from '../../assets/images/check.svg';
-import answerImg from '../../assets/images/answer.svg';
-import EmptyQuestionImg from '../../assets/images/empty-questions.svg';
+import { MdThumbUp, MdModeComment, MdDelete, MdCheck } from 'react-icons/md';
 
 import { useRoom } from '../../hooks/useRoom';
+import { database } from '../../services/firebase';
+import { useState } from 'react';
 
+import { Header } from '../../components/Header';
+import { Question } from '../../components/Question';
+import { RoomCode } from '../../components/RoomCode';
 import { Button } from '../../components/Button';
 import { ModalConfirm } from '../../components/Modal/Confirm';
 
-import { Question } from '../../components/Question';
-import { RoomCode } from '../../components/RoomCode';
+import EmptyQuestionImg from '../../assets/images/empty-questions.svg';
 
 import './style.scss';
-import { database } from '../../services/firebase';
-import { useState } from 'react';
 
 type RoomProsp = {
     id: string;
@@ -101,15 +99,10 @@ export function AdminRoom() {
                 message="Tem certeza que você deseja deletar esta pergunta?"
                 confirmButtonText="Sim, Deletar"
             />
-            <header>
-                <div className="content">
-                    <img src={logoImg} alt="Letmeask" />
-                    <div>
-                        <RoomCode code={roomId} />
-                        <Button isOutlined onClick={openConfirmModalEndRoom} >Encerrar sala</Button>
-                    </div>
-                </div>
-            </header>
+            <Header>
+                <RoomCode code={roomId} />
+                <Button isOutlined onClick={openConfirmModalEndRoom} >Encerrar sala</Button>
+            </Header>
             <main className="content">
                 <div className="room-title">
                     <h1>Sala {title}</h1>
@@ -118,23 +111,31 @@ export function AdminRoom() {
 
                 { questions.length > 0 ? (
                     <div className="question-list">
-                        {questions.map(question => {
+                        {questions.sort((a, b) => a.likeCount < b.likeCount ? 1 : -1).map(question => {
                             return (
-                                <Question key={question.id} content={question.content} author={question.author} isAnswered={question.isAnswered} isHighlighted={question.isHighlighted}>
+                                <Question key={question.id} roomId={roomId} questionId={question.id} content={question.content} response={question.response} author={question.author} isAnswered={question.isAnswered} isHighlighted={question.isHighlighted} responsered={true}>
+                                    
                                     { !question.isAnswered &&
                                         (
                                             <>
+                                                <div>
+                                                    { question.likeCount > 0 && (<><span>{question.likeCount}</span> <MdThumbUp /> </>)}
+                                                </div>
                                                 <button 
                                                     type="button"
                                                     onClick={() => handleAnsweredQuestion(question.id, question.isAnswered)}
+                                                    data-tip="Marcar pergunta como respondida"
                                                     >
-                                                    <img src={checkImg} alt="Marcar pergunta como respondida" />
+                                                    {/* <img src={checkImg} alt="Marcar pergunta como respondida" /> */}
+                                                    <MdCheck />
                                                 </button>
                                                 <button 
                                                     type="button"
                                                     onClick={() => handleHighlightedQuestion(question.id, question.isHighlighted)}
+                                                    data-tip="Destacar pergunta"
                                                     >
-                                                    <img src={answerImg} alt="Destacar pergunta" />
+                                                    {/* <img src={MdModeComment} alt="Destacar pergunta" /> */}
+                                                    <MdModeComment />
                                                 </button>
                                             </>
                                         )
@@ -142,8 +143,10 @@ export function AdminRoom() {
                                     <button 
                                         type="button"
                                         onClick={() => {openConfirmModalDeleteQuestion(question.id)}}
+                                        data-tip="Deletar pergunta"
                                         >
-                                        <img src={deleteImg} alt="Deletar pergunta" />
+                                        {/* <img src={deleteImg} alt="Deletar pergunta" /> */}
+                                        <MdDelete />
                                     </button>
                                 </Question>
                             )

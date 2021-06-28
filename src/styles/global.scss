@@ -18,3 +18,38 @@ body, input, button, textarea {
     background: var(--color-danger) !important;
     color: #FFF !important;
 }
+
+
+.separator {
+    font-size: 14px;
+    color: var(--color-secondary-text);
+
+    margin: 32px 0;
+    display: flex;
+    align-items: center;
+
+    a {
+        cursor: pointer;
+        color: var(--color-primary);
+
+        &:hover {
+            filter: brightness(0.8);
+        }
+    }
+
+    &::before {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--color-primary-text);
+        margin-right: 16px;
+    }
+
+    &::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--color-primary-text);
+        margin-left: 16px;
+    }
+}

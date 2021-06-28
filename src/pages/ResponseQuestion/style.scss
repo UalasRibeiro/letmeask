@@ -1,4 +1,4 @@
-#page-room {
+#page-response {
     .question-list {
         margin-top: 23px;
     }
@@ -31,15 +31,18 @@
         }
 
         form {
+
+            margin-top: 32px;
+
             textarea {
-                // width: 100%;
+                width: 100%;
                 border: 0;
                 padding: 16px;
                 border-radius: 8px;
                 background: #fefefe;
                 box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
                 resize: vertical;
-                min-height: 130px;
+                min-height: 300px;
             }
 
             textarea:focus {
@@ -51,25 +54,7 @@
                 justify-content: space-between;
                 align-items: center;
                 margin-top: 16px;
-
-                .user-info {
-                    display:flex;
-                    align-items: center;
-
-                    img {
-                        width: 32px;
-                        height: 32px;
-                        border-radius: 50%;
-                    }
-
-                    > span {
-                        margin-left: 8px;
-                        color: var(--color-secondary-text);
-                        font-size: 14px;
-                        font-weight: 500;
-                    }
-                }
-
+                
                 span {
                     font-size: 14px;
                     color: var(--color-primary-text);
@@ -79,7 +64,6 @@
                         background: transparent;
                         border: 0;
                         color: var(--color-primary);
-
                         text-decoration: underline;
                         font-size: 14;
                         font-weight: 500;
@@ -87,18 +71,6 @@
                         cursor: pointer;
                     }
                 }
-            }
-        }
-
-        .empty-questions {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            padding-top: 30px;
-            
-            > img {
-                height: 300px;
-                margin-bottom: 30px;
             }
         }
     }

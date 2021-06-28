@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 
-import { FaRegClone } from 'react-icons/fa';
+import { MdContentCopy } from 'react-icons/md';
 
 import './style.scss';
 
@@ -19,7 +19,7 @@ export function RoomCode(props: RoomCodeProps) {
     return(
         <button className="room-code" onClick={copyRoomCodeToClipboard}>
             <div>
-                <FaRegClone />
+                <MdContentCopy />
             </div>
             <span>Sala {props.code}</span>
         </button>
